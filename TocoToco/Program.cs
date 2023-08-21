@@ -1,4 +1,6 @@
 using Microsoft.EntityFrameworkCore;
+using TocoToco.BL.Services.CategoryService;
+using TocoToco.BL.Services.ProductService;
 using TocoToco.BL.Services.RoleService;
 using TocoToco.BL.Services.UserService;
 using TocoToco.DL.Constracts;
@@ -32,6 +34,14 @@ builder.Services.AddScoped<IRoleRepository, RoleRepository>();
 // user
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+
+// category
+builder.Services.AddScoped<ICategoryService, CategoryService>();
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+
+// product
+builder.Services.AddScoped<IProductService , ProductService>();
+builder.Services.AddScoped<IProductRepository , ProductRepository>();
 
 var app = builder.Build();
 
