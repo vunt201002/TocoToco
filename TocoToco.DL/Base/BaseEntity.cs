@@ -16,7 +16,7 @@ namespace TocoToco.DL.Base
     {
         [Key]
         [Column(TypeName = "uniqueidentifier")]
-        public Guid Id { get; set; }                                // id
+        public Guid Id { get; set; } = Guid.NewGuid();              // id
         public int Deleted { get; set; } = 0;                       // đã xóa
         public DateTime CreatedAt { get; set; } = DateTime.Now;     // ngày tạo
 

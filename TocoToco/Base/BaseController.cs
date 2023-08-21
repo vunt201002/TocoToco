@@ -1,17 +1,18 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TocoToco.BL.Base;
 
-namespace TocoToco
+namespace TocoToco.Base
 {
     [Route("api/v1/[controller]")]
     [ApiController]
-    public abstract class BaseController<TEntity, TEntityDto, TEntityCreateDto, TEntityUpdateDto> : ControllerBase
-        where TEntity : class
+    public abstract class BaseController<TEntityDto, TEntityCreateDto, TEntityUpdateDto> : ControllerBase
         where TEntityDto : class
         where TEntityCreateDto : class
         where TEntityUpdateDto : class
     {
+        #region Properties
         protected readonly IBaseService<TEntityDto, TEntityCreateDto, TEntityUpdateDto> _baseService;
+        #endregion
 
         #region Constructor
         public BaseController(
@@ -22,12 +23,12 @@ namespace TocoToco
         }
         #endregion
 
-
+        #region Methods
         /// <summary>
         /// hàm lấy danh sách
         /// </summary>
         /// <returns></returns>
-        /// created by: ntvu (20/08/2023)
+        /// created by: ntvu (21/08/2023)
         [HttpGet]
         public virtual async Task<IActionResult> GetList()
         {
@@ -41,7 +42,7 @@ namespace TocoToco
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        /// created by: ntvu (20/08/2023)
+        /// created by: ntvu (21/08/2023)
         [HttpGet("{id}")]
         public virtual async Task<IActionResult> Get([FromRoute] Guid id)
         {
@@ -55,7 +56,7 @@ namespace TocoToco
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
-        /// created by: ntvu (20/08/2023)
+        /// created by: ntvu (21/08/2023)
         [HttpPost]
         public virtual async Task<IActionResult> Add([FromBody] TEntityCreateDto entity)
         {
@@ -69,7 +70,7 @@ namespace TocoToco
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
-        /// created by: ntvu (20/08/2023)
+        /// created by: ntvu (21/08/2023)
         [HttpPut("id")]
         public virtual async Task<IActionResult> Update([FromBody] TEntityUpdateDto entity)
         {
@@ -83,13 +84,14 @@ namespace TocoToco
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        /// created by: ntvu (20/08/2023)
+        /// created by: ntvu (21/08/2023)
         [HttpDelete]
         public virtual async Task<IActionResult> Delete(Guid id)
         {
             int res = await _baseService.Delete(id);
 
             return Ok(res);
-        }
+        } 
+        #endregion
     }
 }
