@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TocoToco.BL.DTOs.RoleDTOs;
+using TocoToco.DL.Entities;
 
 namespace TocoToco.BL.DTOs.UserDTOs
 {
@@ -19,6 +20,6 @@ namespace TocoToco.BL.DTOs.UserDTOs
         public string Address { get; set; }     // địa chỉ
 
         public string Phone { get; set; }       // số điện thoại
-        public RoleDTO RoleDTO { get; set; }    // quyền
+        public Role Role { get; set; }    // quyền
     }
 }

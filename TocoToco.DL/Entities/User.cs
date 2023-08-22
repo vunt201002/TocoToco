@@ -17,19 +17,21 @@ namespace TocoToco.DL.Entities
     public class User : BaseEntity
     {
         [EmailAddress]
-        public string Email { get; set; }                   // email
+        public string Email { get; set; }                               // email
 
         [StringLength(50)]
-        public string Name { get; set; }                    // tên
+        public string Name { get; set; }                                // tên
 
         [StringLength(500)]
-        public string Address { get; set; }                 // địa chỉ
+        public string Address { get; set; }                             // địa chỉ
 
         [StringLength(20)]
-        public string Phone { get; set; }                   // số điện thoại
+        public string Phone { get; set; }                               // số điện thoại
 
         [Column(TypeName = "uniqueidentifier")]
-        public Guid RoleId { get; set; }                    // id quyền
+        public Guid RoleId { get; set; }                                // id quyền
         public Role Role { get; set; } = null!;
+
+        public List<Order> Order { get; set; } = new List<Order>();     // order của người dùng
     }
 }

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using TocoToco.BL.DTOs.CategoryDTOs;
+using TocoToco.BL.DTOs.OrderDTOs;
 using TocoToco.BL.DTOs.ProductDTOs;
 using TocoToco.BL.DTOs.RoleDTOs;
 using TocoToco.BL.DTOs.UserDTOs;
@@ -22,8 +23,7 @@ namespace TocoToco.BL.AutoMapper
             CreateMap<RoleUpdateDTO, Role>();
 
             // user
-            CreateMap<User, UserDTO>()
-                .ForMember(dest => dest.RoleDTO, option => option.MapFrom(src => src.Role));
+            CreateMap<User, UserDTO>();
             CreateMap<UserCreateDTO, User>()
                 .ForMember(dest => dest.Role, option => option.MapFrom(
                     src => new Role { Id = src.RoleId}));
@@ -38,6 +38,11 @@ namespace TocoToco.BL.AutoMapper
             CreateMap<Product, ProductDTO>();
             CreateMap<ProductCreateDTO, Product>();
             CreateMap<ProductUpdateDTO, Product>();
+
+            // order
+            CreateMap<Order, OrderDTO>();
+            CreateMap<OrderCreateDTO, Order>();
+            CreateMap<OrderUpdateDTO, Order>();
 
         }
     }

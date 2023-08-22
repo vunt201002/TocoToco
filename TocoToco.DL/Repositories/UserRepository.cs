@@ -38,5 +38,14 @@ namespace TocoToco.DL.Repositories
 
             return res > 0 ? 1 : 0;
         }
+
+        public override async Task<User> Get(Guid id)
+        {
+            var user = await _context.User
+                .Include(x => x.Role)
+                .FirstOrDefaultAsync(x => x.Id == id);
+
+            return user;
+        }
     }
 }
