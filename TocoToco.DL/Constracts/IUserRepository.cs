@@ -10,5 +10,6 @@ namespace TocoToco.DL.Constracts
 {
     public interface IUserRepository : IBaseRepository<User>
     {
+        public Task<User> CheckEmailExist(string email);
     }
 }

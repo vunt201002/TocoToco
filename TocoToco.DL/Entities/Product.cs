@@ -29,5 +29,7 @@ namespace TocoToco.DL.Entities
         [Column(TypeName = "uniqueidentifier")]
         public Guid CategoryId { get; set; }        // id loại sản phẩm
         public Category Category { get; set; }
+
+        public List<OrderDetail> OrderDetails { get; set; } = new List<OrderDetail>();
     }
 }

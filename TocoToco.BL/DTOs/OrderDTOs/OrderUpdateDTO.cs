@@ -12,7 +12,7 @@ namespace TocoToco.BL.DTOs.OrderDTOs
     public class OrderUpdateDTO
     {
         [Column(TypeName = "uniqueidentifier")]
-        public Guid Id { get; set; } = Guid.NewGuid();          // id
+        public Guid Id { get; set; }                            // id
 
         [StringLength(100)]
         public string Name { get; set; }                        // tên người đặt

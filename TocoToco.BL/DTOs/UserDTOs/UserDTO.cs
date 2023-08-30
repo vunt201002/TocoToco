@@ -20,6 +20,8 @@ namespace TocoToco.BL.DTOs.UserDTOs
         public string Address { get; set; }     // địa chỉ
 
         public string Phone { get; set; }       // số điện thoại
+
+        public string PasswordHash { get; set; }    // mật khẩu đã được hash
         public Role Role { get; set; }    // quyền
     }
 }

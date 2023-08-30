@@ -24,6 +24,9 @@ namespace TocoToco.BL.DTOs.UserDTOs
         [Required]
         public string Phone { get; set; }               // số điện thoại
 
+        [Required]
+        public string Password { get; set; }            // mật khẩu
+
         [Column(TypeName = "uniqueidentifier")]
         public Guid RoleId { get; set; }                // id quyền
     }

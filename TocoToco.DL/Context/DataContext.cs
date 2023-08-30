@@ -29,6 +29,9 @@ namespace TocoToco.DL.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<ToppingOrder>()
+                .HasKey(to => new { to.ToppingId, to.OrderDetailId });
         } 
         #endregion
 
@@ -38,6 +41,13 @@ namespace TocoToco.DL.Context
         public DbSet<Category> Category { get; set; }
         public DbSet<Product> Product { get; set; }
         public DbSet<Order> Order { get; set; }
+        public DbSet<TypeOrder> TypeOrder { get; set; }
+        public DbSet<SizeOrder> SizeOrder { get; set; }
+        public DbSet<Sugar> Sugar { get; set; }
+        public DbSet<Ice> Ice { get; set; }
+        public DbSet<Topping> Topping { get; set; }
+        public DbSet<OrderDetail> OrderDetail { get; set; }
+        public DbSet<ToppingOrder> ToppingOrder { get; set; }
         #endregion
     }
 }

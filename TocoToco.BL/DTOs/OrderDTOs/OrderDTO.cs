@@ -11,7 +11,7 @@ namespace TocoToco.BL.DTOs.OrderDTOs
 {
     public class OrderDTO
     {
-        public Guid Id { get; set; } = Guid.NewGuid();          // id
+        public Guid Id { get; set; }                            // id
         public string Name { get; set; }                        // tên người đặt
         public string Address { get; set; }                     // địa chỉ đặt
 

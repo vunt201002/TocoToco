@@ -35,5 +35,7 @@ namespace TocoToco.DL.Entities
         [Column(TypeName = "uniqueidentifier")]
         public Guid UserId { get; set; }                        // id người đặt
         public User User { get; set; }
+
+        public List<OrderDetail> OrderDetails { get; set; } = new List<OrderDetail>();
     }
 }

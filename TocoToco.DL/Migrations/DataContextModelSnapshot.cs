@@ -49,6 +49,33 @@ namespace TocoToco.DL.Migrations
                     b.ToTable("Category");
                 });
 
+            modelBuilder.Entity("TocoToco.DL.Entities.Ice", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<int>("Deleted")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Ice");
+                });
+
             modelBuilder.Entity("TocoToco.DL.Entities.Order", b =>
                 {
                     b.Property<Guid>("Id")
@@ -108,6 +135,64 @@ namespace TocoToco.DL.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Order");
+                });
+
+            modelBuilder.Entity("TocoToco.DL.Entities.OrderDetail", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("Count")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<int>("Deleted")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("IceId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("OrderId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ProductId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("SizeOrderId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("SugarId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("TotalPrice")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("TypeOrderId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IceId");
+
+                    b.HasIndex("OrderId");
+
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("SizeOrderId");
+
+                    b.HasIndex("SugarId");
+
+                    b.HasIndex("TypeOrderId");
+
+                    b.ToTable("OrderDetail");
                 });
 
             modelBuilder.Entity("TocoToco.DL.Entities.Product", b =>
@@ -183,6 +268,149 @@ namespace TocoToco.DL.Migrations
                     b.ToTable("Role");
                 });
 
+            modelBuilder.Entity("TocoToco.DL.Entities.SizeOrder", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<int>("Deleted")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<int>("PriceAdd")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SizeOrder");
+                });
+
+            modelBuilder.Entity("TocoToco.DL.Entities.Sugar", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<int>("Deleted")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Sugar");
+                });
+
+            modelBuilder.Entity("TocoToco.DL.Entities.Topping", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<int>("Deleted")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<int>("Price")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Topping");
+                });
+
+            modelBuilder.Entity("TocoToco.DL.Entities.ToppingOrder", b =>
+                {
+                    b.Property<Guid>("ToppingId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("OrderDetailId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<int>("Deleted")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("ToppingId", "OrderDetailId");
+
+                    b.HasIndex("OrderDetailId");
+
+                    b.ToTable("ToppingOrder");
+                });
+
+            modelBuilder.Entity("TocoToco.DL.Entities.TypeOrder", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<int>("Deleted")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TypeOrder");
+                });
+
             modelBuilder.Entity("TocoToco.DL.Entities.User", b =>
                 {
                     b.Property<Guid>("Id")
@@ -214,6 +442,10 @@ namespace TocoToco.DL.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<string>("PasswordHash")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Phone")
                         .IsRequired()
                         .HasMaxLength(20)
@@ -240,6 +472,57 @@ namespace TocoToco.DL.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("TocoToco.DL.Entities.OrderDetail", b =>
+                {
+                    b.HasOne("TocoToco.DL.Entities.Ice", "Ice")
+                        .WithMany("OrderDetails")
+                        .HasForeignKey("IceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TocoToco.DL.Entities.Order", "Order")
+                        .WithMany("OrderDetails")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TocoToco.DL.Entities.Product", "Product")
+                        .WithMany("OrderDetails")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TocoToco.DL.Entities.SizeOrder", "SizeOrder")
+                        .WithMany("OrderDetails")
+                        .HasForeignKey("SizeOrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TocoToco.DL.Entities.Sugar", "Sugar")
+                        .WithMany("OrderDetails")
+                        .HasForeignKey("SugarId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TocoToco.DL.Entities.TypeOrder", "TypeOrder")
+                        .WithMany("OrderDetails")
+                        .HasForeignKey("TypeOrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Ice");
+
+                    b.Navigation("Order");
+
+                    b.Navigation("Product");
+
+                    b.Navigation("SizeOrder");
+
+                    b.Navigation("Sugar");
+
+                    b.Navigation("TypeOrder");
+                });
+
             modelBuilder.Entity("TocoToco.DL.Entities.Product", b =>
                 {
                     b.HasOne("TocoToco.DL.Entities.Category", "Category")
@@ -249,6 +532,25 @@ namespace TocoToco.DL.Migrations
                         .IsRequired();
 
                     b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("TocoToco.DL.Entities.ToppingOrder", b =>
+                {
+                    b.HasOne("TocoToco.DL.Entities.OrderDetail", "OrderDetail")
+                        .WithMany("ToppingOrder")
+                        .HasForeignKey("OrderDetailId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TocoToco.DL.Entities.Topping", "Topping")
+                        .WithMany("ToppingOrder")
+                        .HasForeignKey("ToppingId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("OrderDetail");
+
+                    b.Navigation("Topping");
                 });
 
             modelBuilder.Entity("TocoToco.DL.Entities.User", b =>
@@ -267,9 +569,49 @@ namespace TocoToco.DL.Migrations
                     b.Navigation("Products");
                 });
 
+            modelBuilder.Entity("TocoToco.DL.Entities.Ice", b =>
+                {
+                    b.Navigation("OrderDetails");
+                });
+
+            modelBuilder.Entity("TocoToco.DL.Entities.Order", b =>
+                {
+                    b.Navigation("OrderDetails");
+                });
+
+            modelBuilder.Entity("TocoToco.DL.Entities.OrderDetail", b =>
+                {
+                    b.Navigation("ToppingOrder");
+                });
+
+            modelBuilder.Entity("TocoToco.DL.Entities.Product", b =>
+                {
+                    b.Navigation("OrderDetails");
+                });
+
             modelBuilder.Entity("TocoToco.DL.Entities.Role", b =>
                 {
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("TocoToco.DL.Entities.SizeOrder", b =>
+                {
+                    b.Navigation("OrderDetails");
+                });
+
+            modelBuilder.Entity("TocoToco.DL.Entities.Sugar", b =>
+                {
+                    b.Navigation("OrderDetails");
+                });
+
+            modelBuilder.Entity("TocoToco.DL.Entities.Topping", b =>
+                {
+                    b.Navigation("ToppingOrder");
+                });
+
+            modelBuilder.Entity("TocoToco.DL.Entities.TypeOrder", b =>
+                {
+                    b.Navigation("OrderDetails");
                 });
 
             modelBuilder.Entity("TocoToco.DL.Entities.User", b =>

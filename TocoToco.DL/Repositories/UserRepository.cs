@@ -39,11 +39,27 @@ namespace TocoToco.DL.Repositories
             return res > 0 ? 1 : 0;
         }
 
+        /// <summary>
+        /// hàm overrid hàm get,
+        /// trả về cả role
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Task<User></returns>
+        /// created by: ntvu (21/08/2023)
         public override async Task<User> Get(Guid id)
         {
             var user = await _context.User
                 .Include(x => x.Role)
                 .FirstOrDefaultAsync(x => x.Id == id);
+
+            return user;
+        }
+
+        public async Task<User> CheckEmailExist(string email)
+        {
+            User? user = await _context
+                .User
+                .FirstOrDefaultAsync(user => user.Email == email);
 
             return user;
         }
