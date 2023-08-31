@@ -55,6 +55,12 @@ namespace TocoToco.DL.Repositories
             return user;
         }
 
+        /// <summary>
+        /// hàm kiểm tra email tồn tại
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns>Task<User></returns>
+        /// created by: ntvu (31/08/2023)
         public async Task<User> CheckEmailExist(string email)
         {
             User? user = await _context
@@ -62,6 +68,25 @@ namespace TocoToco.DL.Repositories
                 .FirstOrDefaultAsync(user => user.Email == email);
 
             return user;
+        }
+
+        /// <summary>
+        /// hàm lưu rf token vào db
+        /// sau khi login.
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <param name="token"></param>
+        /// <returns></returns>
+        public async Task<int> UpdateRfToken(Guid Id, string token)
+        {
+            User? user = await _context.User.FirstOrDefaultAsync(x => x.Id == Id);
+
+            user.RefreshToken = token;
+            user.RfExpireTime = DateTime.Now.AddDays(100);
+
+            int res = await _context.SaveChangesAsync();
+
+            return res > 0 ? 1 : 0;
         }
     }
 }

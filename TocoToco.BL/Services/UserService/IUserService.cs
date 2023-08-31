@@ -11,6 +11,8 @@ namespace TocoToco.BL.Services.UserService
 {
     public interface IUserService : IBaseService<UserDTO, UserCreateDTO, UserUpdateDTO>
     {
-        public Task<string> Login(UserLogin userLogin);
+        public Task<Tokens> Login(UserLogin userLogin);
+
+        public Task<string> RenewAccessToken(Guid Id, string rfToken);
     }
 }

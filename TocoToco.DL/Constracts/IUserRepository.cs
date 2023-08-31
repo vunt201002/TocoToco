@@ -11,5 +11,6 @@ namespace TocoToco.DL.Constracts
     public interface IUserRepository : IBaseRepository<User>
     {
         public Task<User> CheckEmailExist(string email);
+        public Task<int> UpdateRfToken(Guid Id, string token);
     }
 }

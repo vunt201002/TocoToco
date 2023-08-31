@@ -30,6 +30,9 @@ namespace TocoToco.DL.Entities
         [StringLength(20)]
         public string Phone { get; set; }                               // số điện thoại
 
+        public string RefreshToken { get; set; } = string.Empty;        // refresh token
+        public DateTime RfExpireTime { get; set; }                      // thời gian hết hạn
+
         [Column(TypeName = "uniqueidentifier")]
         public Guid RoleId { get; set; }                                // id quyền
         public Role Role { get; set; } = null!;

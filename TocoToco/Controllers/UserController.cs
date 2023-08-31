@@ -24,9 +24,24 @@ namespace TocoToco.Controllers
         /// <returns>Task<string></returns>
         /// created by: ntvu (30/08/2023)
         [HttpPost("login")]
-        public async Task<string> Login(UserLogin userLogin)
+        public async Task<Tokens> Login(UserLogin userLogin)
         {
-            string token = await _userService.Login(userLogin);
+            Tokens tokens = await _userService.Login(userLogin);
+
+            return tokens;
+        }
+
+        /// <summary>
+        /// hàm cấp mới access token
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <param name="email"></param>
+        /// <returns>Task<string></returns>
+        /// created by: ntvu (31/08/2023)
+        [HttpGet("newtoken")]
+        public async Task<string> RenewAccessToken(Guid Id, string rfToken)
+        {
+            string token = await _userService.RenewAccessToken(Id, rfToken);
 
             return token;
         }
