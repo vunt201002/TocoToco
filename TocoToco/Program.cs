@@ -10,6 +10,7 @@ using TocoToco.BL.Services.IceService;
 using TocoToco.BL.Services.OrderDetailService;
 using TocoToco.BL.Services.OrderService;
 using TocoToco.BL.Services.PaymentService.MoMo;
+using TocoToco.BL.Services.PaymentService.VnPay;
 using TocoToco.BL.Services.ProductService;
 using TocoToco.BL.Services.RoleService;
 using TocoToco.BL.Services.SizeOrderService;
@@ -116,6 +117,9 @@ builder.Services.AddScoped<IToppingOrderRepository, ToppingOrderRepository>();
 
 // momo payment
 builder.Services.AddScoped<IMoMoPaymentService, MoMoPaymentService>();
+
+// vnpay
+builder.Services.AddScoped<IVnPayService, VnPayService>();
 
 var app = builder.Build();
 
