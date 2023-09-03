@@ -10,5 +10,12 @@ namespace TocoToco.DL.Constracts
 {
     public interface IProductRepository : IBaseRepository<Product>
     {
+        /// <summary>
+        /// tìm sản phẩm bằng tên
+        /// </summary>
+        /// <param name="searchText"></param>
+        /// <returns>Task<Product></returns>
+        /// created by: ntvu (31/08/2023)
+        public Task<IEnumerable<Product>> Search(string searchText);
     }
 }

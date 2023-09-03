@@ -46,5 +46,6 @@ namespace TocoToco.DL.Base
         /// <returns>int</returns>
         /// created by: ntvu (20/08/2023)
         public Task<int> Delete(Guid id);
+
     }
 }

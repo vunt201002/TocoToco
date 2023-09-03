@@ -9,6 +9,7 @@ using TocoToco.BL.Services.CategoryService;
 using TocoToco.BL.Services.IceService;
 using TocoToco.BL.Services.OrderDetailService;
 using TocoToco.BL.Services.OrderService;
+using TocoToco.BL.Services.PaymentService.MoMo;
 using TocoToco.BL.Services.ProductService;
 using TocoToco.BL.Services.RoleService;
 using TocoToco.BL.Services.SizeOrderService;
@@ -112,6 +113,9 @@ builder.Services.AddScoped<IOrderDetailRepository, OrderDetailRepository>();
 // topping order
 builder.Services.AddScoped<IToppingOrderService, ToppingOrderService>();
 builder.Services.AddScoped<IToppingOrderRepository, ToppingOrderRepository>();
+
+// momo payment
+builder.Services.AddScoped<IMoMoPaymentService, MoMoPaymentService>();
 
 var app = builder.Build();
 
