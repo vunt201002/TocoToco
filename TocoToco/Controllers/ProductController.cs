@@ -2,6 +2,7 @@
 using TocoToco.Base;
 using TocoToco.BL.DTOs.ProductDTOs;
 using TocoToco.BL.Services.ProductService;
+using static TocoToco.Common.Enumeration.Enum;
 
 namespace TocoToco.Controllers
 {
@@ -22,11 +23,16 @@ namespace TocoToco.Controllers
         /// <returns>Task<IEnumerable<ProductDTO>></returns>
         /// created by: ntvu (31/08/2023)
         [HttpGet("search")]
-        public async Task<IEnumerable<ProductDTO>> Search(string searchText)
+        public async Task<IActionResult> Search(string searchText)
         {
             IEnumerable<ProductDTO> productDTOs = await _productService.Search(searchText);
 
-            return productDTOs;
+            if (productDTOs == null)
+            {
+                return HandleResult("Lỗi khi thêm", ReturnCode.BadRequest, productDTOs);
+            }
+
+            return HandleResult("Thêm thành công", ReturnCode.Success, productDTOs);
         }
     }
 }

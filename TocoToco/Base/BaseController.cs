@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TocoToco.BL.Base;
+using TocoToco.Common.Models;
+using static TocoToco.Common.Enumeration.Enum;
 
 namespace TocoToco.Base
 {
@@ -35,7 +37,16 @@ namespace TocoToco.Base
         {
             List<TEntityDto> entities = await _baseService.GetList();
 
-            return Ok(entities);
+            if (entities  == null)
+            {
+                return HandleResult("Lỗi khi lấy danh sách", ReturnCode.BadRequest, entities);
+
+            } else if (entities.Count == 0)
+            {
+                return HandleResult("Danh sách rỗng", ReturnCode.NoContent, entities);
+            }
+
+            return HandleResult("Lấy danh sách thành công", ReturnCode.Success, entities);
         }
 
         /// <summary>
@@ -49,7 +60,12 @@ namespace TocoToco.Base
         {
             TEntityDto entity = await _baseService.Get(id);
 
-            return Ok(entity);
+            if (entity == null)
+            {
+                return HandleResult("Lỗi khi lấy bản ghi", ReturnCode.BadRequest, entity);
+            }
+
+            return HandleResult("Lấy bản ghi thành công", ReturnCode.Success, entity);
         }
 
         /// <summary>
@@ -63,7 +79,12 @@ namespace TocoToco.Base
         {
             int res = await _baseService.Add(entity);
 
-            return Ok(res);
+            if (res == 0)
+            {
+                return HandleResult("Lỗi khi thêm", ReturnCode.BadRequest, res);
+            }
+
+            return HandleResult("Thêm thành công", ReturnCode.Success, res);
         }
 
         /// <summary>
@@ -77,7 +98,12 @@ namespace TocoToco.Base
         {
             int res = await _baseService.Update(entity);
 
-            return Ok(res);
+            if (res == 0)
+            {
+                return HandleResult("Lỗi khi sửa", ReturnCode.BadRequest, res);
+            }
+
+            return HandleResult("Sửa thành công", ReturnCode.Success, res);
         }
 
         /// <summary>
@@ -91,8 +117,28 @@ namespace TocoToco.Base
         {
             int res = await _baseService.Delete(id);
 
-            return Ok(res);
+            if (res == 0)
+            {
+                return HandleResult("Lỗi khi xóa", ReturnCode.BadRequest, res);
+            }
+
+            return HandleResult("Xóa thành công", ReturnCode.Success, res);
         } 
+
+        protected IActionResult HandleResult(
+            string message,
+            ReturnCode returnCode,
+            object? data = null
+        )
+        {
+            ResponseModel responseModel = new ResponseModel();
+
+            responseModel.DevMsg = message;
+            responseModel.UserMsg = message;
+            responseModel.Data = data;
+
+            return StatusCode((int)returnCode, responseModel);
+        }
         #endregion
     }
 }

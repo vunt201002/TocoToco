@@ -23,6 +23,7 @@ using TocoToco.BL.Services.UserService;
 using TocoToco.DL.Constracts;
 using TocoToco.DL.Context;
 using TocoToco.DL.Repositories;
+using TocoToco.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -133,6 +134,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseMiddleware(typeof(ErrorMiddleware));
 
 app.UseHttpsRedirection();
 

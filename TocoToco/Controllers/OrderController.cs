@@ -2,6 +2,8 @@
 using TocoToco.Base;
 using TocoToco.BL.DTOs.OrderDTOs;
 using TocoToco.BL.Services.OrderService;
+using static TocoToco.Common.Enumeration.Enum;
+
 
 namespace TocoToco.Controllers
 {
@@ -21,11 +23,16 @@ namespace TocoToco.Controllers
         /// <returns>Task<Guid></returns>
         /// created by: ntvu (01/09/2023)
         [HttpPost("rid")]
-        public async Task<Guid> AddReturnId(OrderCreateDTO orderCreateDTO)
+        public async Task<IActionResult> AddReturnId(OrderCreateDTO orderCreateDTO)
         {
             Guid newId = await _orderService.AddReturnId(orderCreateDTO);
 
-            return newId;
+            if (newId == default)
+            {
+                return HandleResult("Lỗi khi thêm", ReturnCode.BadRequest, newId);
+            }
+
+            return HandleResult("Thêm thành công", ReturnCode.Success, newId);
         }
     }
 }
