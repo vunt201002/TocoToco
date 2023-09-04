@@ -11,6 +11,7 @@ using TocoToco.BL.Services.OrderDetailService;
 using TocoToco.BL.Services.OrderService;
 using TocoToco.BL.Services.PaymentService.MoMo;
 using TocoToco.BL.Services.PaymentService.VnPay;
+using TocoToco.BL.Services.PaymentService.ZaloPay;
 using TocoToco.BL.Services.ProductService;
 using TocoToco.BL.Services.RoleService;
 using TocoToco.BL.Services.SizeOrderService;
@@ -120,6 +121,9 @@ builder.Services.AddScoped<IMoMoPaymentService, MoMoPaymentService>();
 
 // vnpay
 builder.Services.AddScoped<IVnPayService, VnPayService>();
+
+// zalopay
+builder.Services.AddScoped<IZaloPayService, ZaloPayService>();
 
 var app = builder.Build();
 
